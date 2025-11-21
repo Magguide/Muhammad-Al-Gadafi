@@ -1,0 +1,86 @@
+a<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Program Function & Array - Trapesium</title>
+
+<style>
+    body {
+        font-family: Arial;
+        background: #f2fcff;
+        padding: 40px;
+    }
+    .card {
+        width: 450px;
+        margin: auto;
+        background: white;
+        padding: 22px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+    }
+    h2 { color: #0081a7; }
+    select, input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    button {
+        padding: 8px 15px;
+        background: #0081a7;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .result {
+        margin-top: 15px;
+        padding: 10px;
+        background: #dffaff;
+        border-radius: 6px;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Program Function & Array</h2>
+
+    <label>Menu Pilihan :</label>
+    <select id="menu" onchange="tampilMenu()">
+        <option value="">-- Pilih Menu --</option>
+        <option value="2">Menghitung Luas Trapesium</option>
+    </select>
+
+    <div id="trapesium" style="display:none;">
+        <h3>Luas Trapesium</h3>
+        <input type="number" id="atas" placeholder="Garis Atas">
+        <input type="number" id="bawah" placeholder="Garis Bawah">
+        <input type="number" id="tinggi" placeholder="Tinggi">
+        <button onclick="hitungTrapesium()">Hitung Luas</button>
+        <div class="result" id="hasilTrapesium">Hasil tampil di sini...</div>
+    </div>
+</div>
+
+<script>
+function tampilMenu() {
+    let menu = document.getElementById("menu").value;
+    document.getElementById("trapesium").style.display = menu == "2" ? "block" : "none";
+}
+
+function hitungTrapesium() {
+    let a = Number(document.getElementById("atas").value);
+    let b = Number(document.getElementById("bawah").value);
+    let t = Number(document.getElementById("tinggi").value);
+
+    let luas = ((a + b) / 2) * t;
+
+    document.getElementById("hasilTrapesium").innerHTML = "Luas Trapesium: " + luas + " cm²";
+}
+</script>
+
+</body>
+</html>

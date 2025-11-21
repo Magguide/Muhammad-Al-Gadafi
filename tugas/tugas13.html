@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Tugas DIV dan SPAN - Muhammad Al Gadafi</title>
+    <style>
+        body{
+            font-family: "Times New Roman", serif;
+            margin: 40px;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        .box{
+            border: 2px solid #000;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+        h2{
+            text-align: center;
+            margin-top: 0;
+        }
+        pre{
+            background: #eee;
+            padding: 12px;
+            border-left: 4px solid #666;
+            overflow-x: auto;
+        }
+        code{
+            font-family: "Courier New", monospace;
+            font-size: 15px;
+        }
+        .footer{
+            margin-top: 20px;
+            padding: 10px;
+            background: #e3f1ff;
+            border: 1px solid #000;
+            width: max-content;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Tugas E-Learning – DIV &amp; SPAN</h2>
+
+    <!-- Nomor 1 -->
+    <p><b>1. Apa bedanya DIV dan SPAN?</b><br>
+        <b>DIV</b> adalah elemen <i>block-level</i> yang digunakan untuk mengelompokkan bagian besar pada halaman
+        (misalnya header, konten, footer). DIV selalu mulai dari baris baru dan lebarnya mengikuti lebar halaman.<br><br>
+        <b>SPAN</b> adalah elemen <i>inline</i> yang dipakai untuk memberi style pada teks atau bagian kecil di dalam
+        sebuah kalimat tanpa memulai baris baru, misalnya mewarnai satu kata saja.
+    </p>
+
+    <!-- Nomor 2 -->
+    <p><b>2. Contoh hasil tampilan website (codingan):</b></p>
+
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Explore Indonesia&lt;/title&gt;
+
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* DIV sebagai pembungkus besar (block-level) */
+        .header {
+            background: #0a58ca;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .menu {
+            margin-top: 10px;
+        }
+
+        /* SPAN untuk item menu (inline) */
+        .menu span {
+            background: white;
+            color: #0a58ca;
+            padding: 6px 12px;
+            border-radius: 4px;
+            margin: 0 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .container {
+            background: white;
+            width: 80%;
+            margin: 25px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .content {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .text-box {
+            flex: 1;
+        }
+
+        .image-box img {
+            width: 260px;
+            border-radius: 8px;
+        }
+
+        .list-section {
+            background: #eef3ff;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;div class="header"&gt;
+        &lt;h2&gt;Jelajahi Keindahan Indonesia&lt;/h2&gt;
+        &lt;div class="menu"&gt;
+            &lt;span&gt;Home&lt;/span&gt;
+            &lt;span&gt;Destinasi&lt;/span&gt;
+            &lt;span&gt;Artikel&lt;/span&gt;
+            &lt;span&gt;Kontak&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="container"&gt;
+        &lt;div class="content"&gt;
+            &lt;div class="text-box"&gt;
+                &lt;h3&gt;Wisata Alam&lt;/h3&gt;
+                &lt;p&gt;Temukan tempat-tempat indah di seluruh Indonesia mulai dari gunung, pantai, sampai air terjun.&lt;/p&gt;
+                &lt;button&gt;Lihat Selengkapnya&lt;/button&gt;
+            &lt;/div&gt;
+
+            &lt;div class="image-box"&gt;
+                &lt;img src="https://via.placeholder.com/260x170?text=Indonesia" alt="Gambar wisata"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="list-section"&gt;
+            &lt;b&gt;Destinasi Populer:&lt;/b&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Bromo – Jawa Timur&lt;/li&gt;
+                &lt;li&gt;Raja Ampat – Papua&lt;/li&gt;
+                &lt;li&gt;Pantai Kuta – Bali&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+</div>
+
+<div class="footer">
+    Dibuat oleh: <b>Muhammad Al Gadafi</b> — NIM: <b>231011400573</b>
+</div>
+
+</body>
+</html>

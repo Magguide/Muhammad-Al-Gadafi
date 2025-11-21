@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Program Function & Array - Kalkulator</title>
+
+<style>
+    body {
+        font-family: Arial;
+        background: #f3f7ff;
+        padding: 40px;
+    }
+    .card {
+        width: 450px;
+        margin: auto;
+        background: white;
+        padding: 22px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+    }
+    h2 { color: #0057e7; }
+    select, input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    button {
+        padding: 8px 15px;
+        background: #0057e7;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 5px;
+    }
+    .result {
+        margin-top: 15px;
+        padding: 10px;
+        background: #eaf1ff;
+        border-radius: 6px;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Program Function & Array</h2>
+
+    <label>Menu Pilihan :</label>
+    <select id="menu" onchange="tampilkanMenu()">
+        <option value="">-- Pilih Menu --</option>
+        <option value="1">Kalkulator</option>
+    </select>
+
+    <div id="kalkulator" style="display:none;">
+        <h3>Kalkulator</h3>
+        <input type="number" id="angka1" placeholder="Masukkan angka 1">
+        <select id="operator">
+            <option value="+">Tambah</option>
+            <option value="-">Kurang</option>
+            <option value="*">Kali</option>
+            <option value="/">Bagi</option>
+        </select>
+        <input type="number" id="angka2" placeholder="Masukkan angka 2">
+        <button onclick="hitung()">Hitung</button>
+        <div class="result" id="hasilKalkulator">Hasil muncul di sini...</div>
+    </div>
+</div>
+
+<script>
+function tampilkanMenu() {
+    let menu = document.getElementById("menu").value;
+    document.getElementById("kalkulator").style.display = menu == "1" ? "block" : "none";
+}
+
+function hitung() {
+    let a = Number(document.getElementById("angka1").value);
+    let b = Number(document.getElementById("angka2").value);
+    let op = document.getElementById("operator").value;
+    let hasil;
+
+    switch(op){
+        case "+": hasil = a + b; break;
+        case "-": hasil = a - b; break;
+        case "*": hasil = a * b; break;
+        case "/": hasil = a / b; break;
+    }
+    document.getElementById("hasilKalkulator").innerHTML = "Hasil: " + hasil;
+}
+</script>
+
+</body>
+</html>

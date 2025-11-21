@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh Alert Prompt Confirm & Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef3f8;
+            padding: 30px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            width: 70%;
+            margin: auto;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #0a6ad6;
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding: 10px;
+            background: #dceaff;
+            border-radius: 6px;
+            width: max-content;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin-right: 8px;
+            background: #0a6ad6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #084fa1;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0 12px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        hr {
+            margin: 20px 0;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="card">
+        <h1>Contoh: Alert, Prompt, Confirm & Form</h1>
+
+        <p><b>Dibuat oleh:</b> Muhammad Al Gadafi — NIM: 231011400573</p>
+
+        <p>Halaman ini mendemonstrasikan dialog box JS dan form interaktif.</p>
+
+        <button onclick="mintaNama()">Minta Nama (Prompt)</button>
+        <button onclick="hapusData()">Hapus Contoh Data (Confirm)</button>
+
+        <hr>
+
+        <form id="formData">
+            <label>Nama lengkap *</label>
+            <input type="text" placeholder="Masukkan nama">
+
+            <label>Email *</label>
+            <input type="email" placeholder="contoh@domain.com">
+
+            <label>Jenis Kelamin *</label><br>
+            <input type="radio" name="jk"> Laki-laki<br>
+            <input type="radio" name="jk"> Perempuan<br><br>
+
+            <label>Umur *</label>
+            <select>
+                <option>Pilih umur</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20+</option>
+            </select>
+
+            <label>Minat</label><br>
+            <input type="checkbox"> Web <br>
+            <input type="checkbox"> Mobile <br>
+            <input type="checkbox"> AI <br><br>
+
+            <button type="submit">Kirim</button>
+            <button type="reset">Reset Form</button>
+        </form>
+
+        <div class="footer">
+            © Muhammad Al Gadafi | 231011400573
+        </div>
+
+    </div>
+
+    <script>
+        function mintaNama() {
+            let nama = prompt("Masukkan nama Anda:");
+            if (nama) {
+                alert("Halo, " + nama + "!");
+            }
+        }
+
+        function hapusData() {
+            let hapus = confirm("Apakah Anda yakin ingin menghapus data?");
+            if (hapus) alert("Data berhasil dihapus!");
+        }
+    </script>
+
+</body>
+</html>

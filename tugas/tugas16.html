@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator Sederhana</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h1 {
+            color: red;
+        }
+
+        h2 {
+            color: black;
+        }
+
+        table {
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        input, select {
+            padding: 6px;
+            font-size: 16px;
+            width: 140px;
+        }
+
+        .footer {
+            margin-top: 35px;
+            color: blue;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Kalkulator Sederhana</h1>
+    <h2>Selamat Mencoba</h2>
+
+    <table>
+        <tr>
+            <th>Nilai I</th>
+            <th></th>
+            <th>Nilai II</th>
+        </tr>
+
+        <tr>
+            <form method="post">
+                <td><input type="number" id="n1"></td>
+
+                <td>
+                    <select id="op">
+                        <option value="+"> + </option>
+                        <option value="-"> - </option>
+                        <option value="*"> * </option>
+                        <option value="/"> / </option>
+                    </select>
+                </td>
+
+                <td><input type="number" id="n2"></td>
+
+                <td><button type="button" onclick="hitung()">submit</button></td>
+            </form>
+        </tr>
+    </table>
+
+    <h2>Hasil: <span id="hasil">0</span></h2>
+
+    <div class="footer">
+        Created by <b>Muhammad Al Gadafi</b> — 231011400573
+    </div>
+
+    <script>
+        function hitung() {
+            let a = parseFloat(document.getElementById("n1").value);
+            let b = parseFloat(document.getElementById("n2").value);
+            let op = document.getElementById("op").value;
+
+            let hasil = 0;
+
+            if (op === "+") hasil = a + b;
+            else if (op === "-") hasil = a - b;
+            else if (op === "*") hasil = a * b;
+            else if (op === "/") hasil = a / b;
+
+            document.getElementById("hasil").innerText = hasil;
+        }
+    </script>
+
+</body>
+</html>
