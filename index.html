@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Website Pribadi — Muhammad Al Gadafi</title>
+
+  <!-- sederhana & modern font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0b2564;              /* biru gelap utama */
+      --bg-soft: #0f2f7a;         /* variasi biru lembut */
+      --card: #ffffff;            /* kartu putih agar tetap kebaca */
+      --muted: #6b7280;
+      --accent: #38bdf8;          /* biru muda aksen */
+      --soft: rgba(56,189,248,0.08);
+      --radius: 14px;
+      --shadow: 0 14px 35px rgba(15,23,42,0.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background:
+        radial-gradient(circle at top left, #1d4ed8 0, transparent 55%),
+        radial-gradient(circle at bottom right, #0ea5e9 0, transparent 55%),
+        linear-gradient(135deg,var(--bg-soft),var(--bg));
+      color:#0f1724;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-top:72px; /* space for fixed navbar */
+    }
+
+    /* NAVBAR */
+    .navbar{
+      position:fixed;
+      top:0; left:0; right:0;
+      height:72px;
+      background:linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,64,175,0.95));
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 22px;
+      box-shadow: 0 10px 30px rgba(15,23,42,0.65);
+      z-index:1000;
+      border-bottom:1px solid rgba(148,163,184,0.2);
+      backdrop-filter: blur(14px);
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo-img{
+      width:48px;
+      height:48px;
+      border-radius:14px;
+      object-fit:cover;
+      box-shadow:0 10px 28px rgba(15,23,42,0.7);
+      border:1px solid rgba(148,163,184,0.45);
+      background:#0b1f4b;
+    }
+
+    .brand .title{
+      font-weight:600;
+      font-size:15px;
+      color:#e5f0ff;
+    }
+    .brand .sub{
+      font-size:12px;
+      color:rgba(226,232,240,0.8);
+    }
+
+    /* menu button */
+    .menu-wrap{position:relative}
+    .menu-btn{
+      background:rgba(15,23,42,0.6);
+      border:1px solid rgba(148,163,184,0.6);
+      padding:10px 14px;
+      border-radius:999px;
+      cursor:pointer;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      font-weight:600;
+      font-size:13px;
+      color:#e5f0ff;
+      letter-spacing:0.03em;
+      transition:all .16s ease;
+    }
+    .menu-btn:hover{
+      transform:translateY(-2px) scale(1.02);
+      box-shadow:0 12px 32px rgba(15,23,42,0.8);
+      border-color:var(--accent);
+      background:rgba(15,23,42,0.85);
+    }
+
+    /* dropdown */
+    .dropdown{
+      position:absolute;
+      right:0;
+      top:64px;
+      min-width:190px;
+      background:rgba(15,23,42,0.98);
+      border-radius:16px;
+      box-shadow:0 18px 45px rgba(15,23,42,0.9);
+      overflow:hidden;
+      border:1px solid rgba(148,163,184,0.45);
+      display:none;
+      flex-direction:column;
+      padding:6px;
+      backdrop-filter:blur(10px);
+    }
+    .dropdown a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:6px;
+      padding:10px 12px;
+      text-decoration:none;
+      color:#e5f0ff;
+      font-weight:500;
+      font-size:13px;
+      border-radius:10px;
+      transition:background .14s ease, color .14s ease, transform .14s ease;
+    }
+    .dropdown a span.bullet{
+      width:6px;
+      height:6px;
+      border-radius:999px;
+      background:rgba(148,163,184,0.7);
+    }
+    .dropdown a:hover{
+      background:rgba(56,189,248,0.12);
+      color:var(--accent);
+      transform:translateX(2px);
+    }
+    .dropdown a.active{
+      background:rgba(56,189,248,0.16);
+      color:var(--accent);
+    }
+    .dropdown a.active span.bullet{
+      background:var(--accent);
+    }
+
+    /* layout container */
+    .container{
+      max-width:1000px;
+      margin:26px auto;
+      padding:18px;
+    }
+
+    /* card */
+    .card{
+      background:linear-gradient(145deg, rgba(255,255,255,0.98), rgba(241,245,249,0.98));
+      border-radius:24px;
+      padding:22px;
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
+      border:1px solid rgba(148,163,184,0.45);
+      backdrop-filter: blur(10px);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:
+        radial-gradient(circle at top right, rgba(56,189,248,0.12) 0, transparent 55%),
+        radial-gradient(circle at bottom left, rgba(59,130,246,0.12) 0, transparent 55%);
+      opacity:0.65;
+      pointer-events:none;
+      mix-blend-mode:screen;
+    }
+    .card > *{
+      position:relative;
+      z-index:1;
+    }
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 22px 60px rgba(15,23,42,0.75);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+
+    h1,h2{margin:0 0 8px 0}
+    h2{
+      font-size:20px;
+      letter-spacing:0.02em;
+      color:#0f1724;
+    }
+    .muted{color:var(--muted); font-size:14px}
+
+    /* content sections */
+    .content section{
+      display:none;
+      opacity:0;
+      transform:translateY(8px);
+      transition:opacity .22s ease, transform .22s ease;
+    }
+    .content section.active{
+      display:block;
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* PROFILE layout */
+    .profile{
+      display:flex;
+      gap:18px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+
+    .avatar-wrap{
+      flex: 0 0 180px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .avatar{
+      width:160px;
+      height:160px;
+      border-radius:22px;
+      object-fit:cover;
+      box-shadow:0 20px 45px rgba(15,23,42,0.6);
+      border:3px solid rgba(56,189,248,0.5);
+      background:#020617;
+    }
+
+    .profile .info{
+      flex:1;
+      min-width:220px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      text-align:left;
+    }
+
+    .kv{
+      margin:6px 0;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .kv strong{
+      color:#0f1724;
+    }
+
+    /* subtle chip on HOME */
+    .hero-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:4px 10px;
+      border-radius:999px;
+      background:rgba(56,189,248,0.12);
+      color:#0f1724;
+      font-size:12px;
+      margin-bottom:12px;
+    }
+    .hero-chip-dot{
+      width:7px;
+      height:7px;
+      border-radius:999px;
+      background:var(--accent);
+      box-shadow:0 0 0 5px rgba(56,189,248,0.3);
+    }
+
+    .gallery{
+      display:flex;flex-wrap:wrap;gap:12px;
+      margin-top:12px;
+    }
+    .gallery img{
+      width:260px;height:160px;object-fit:cover;border-radius:16px;
+      box-shadow:0 18px 40px rgba(15,23,42,0.55);
+      border:1px solid rgba(148,163,184,0.45);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .gallery img:hover{
+      transform:translateY(-4px) scale(1.03);
+      box-shadow:0 24px 55px rgba(15,23,42,0.8);
+    }
+
+    /* ===== LATIHAN (larger, full image previews) ===== */
+    #latihan .latihan-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:14px }
+
+    /* Desktop: larger thumb width, full image (no crop) */
+    #latihan .latihan-item {
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,0.5);
+      background:linear-gradient(120deg, rgba(255,255,255,0.95), rgba(241,245,249,0.96));
+      margin-bottom:0; /* spacing handled by gap */
+      box-shadow:0 12px 32px rgba(15,23,42,0.35);
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    #latihan .latihan-item:hover{
+      transform:translateY(-3px);
+      box-shadow:0 20px 52px rgba(15,23,42,0.9);
+      border-color:var(--accent);
+    }
+
+    /* thumb now uses width but auto height so image not cropped */
+    .thumb {
+      width:320px;           /* larger preview on desktop */
+      flex:0 0 320px;
+      border-radius:14px;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(145deg,#0f172a,#1e293b);
+      border:1px solid rgba(148,163,184,0.7);
+      cursor:pointer;
+      position:relative;
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      box-shadow:0 14px 35px rgba(15,23,42,0.9);
+    }
+    .thumb::after{
+      content:"Klik untuk preview";
+      position:absolute;
+      left:10px;
+      bottom:10px;
+      padding:4px 8px;
+      border-radius:999px;
+      background:rgba(15,23,42,0.8);
+      color:#e5f0ff;
+      font-size:11px;
+      opacity:0;
+      transform:translateY(6px);
+      transition:opacity .18s ease, transform .18s ease;
+    }
+    .thumb:hover{
+      transform:translateY(-3px) scale(1.01);
+      box-shadow:0 20px 55px rgba(15,23,42,1);
+      border-color:var(--accent);
+    }
+    .thumb:hover::after{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* ensure images take full width and maintain aspect ratio (no crop) */
+    .thumb img {
+      width:100%;
+      height:auto;
+      object-fit:contain; /* keep full content visible */
+      display:block;
+    }
+
+    .item-meta { flex:1; display:flex; flex-direction:column; gap:8px; min-width:0 }
+    .item-meta .title {
+      font-weight:700;
+      color:#0f1724;
+      text-decoration:none;
+      font-size:15px;
+    }
+    .item-meta .title:hover{
+      color:var(--accent);
+    }
+    .item-meta .meta-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap }
+    .btn-small {
+      background:linear-gradient(135deg,#0f172a,#1d4ed8);
+      border:1px solid rgba(15,23,42,0.35);
+      padding:7px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:12px;
+      text-decoration:none;
+      color:#e5f0ff;
+      letter-spacing:0.02em;
+      transition:transform .16s ease, box-shadow .16s ease, background .16s ease;
+    }
+    .btn-small:hover {
+      background:linear-gradient(135deg,#1d4ed8,#38bdf8);
+      box-shadow:0 12px 30px rgba(15,23,42,0.8);
+      transform:translateY(-2px);
+    }
+
+    /* small screens: thumb full-width and taller */
+    @media (max-width:720px){
+      .brand .title{font-size:14px}
+      .avatar{width:140px;height:140px}
+      .gallery img{width:calc(50% - 10px); height:120px}
+      .dropdown{right:12px; left:auto; top:64px}
+      .container{padding:12px}
+      .card{border-radius:18px;padding:18px}
+
+      /* latihan: stack vertically and thumb full width */
+      #latihan .latihan-item { flex-direction:column; align-items:flex-start; padding:12px }
+      .thumb { width:100%; flex:0 0 auto; height:auto }
+
+      .item-meta { width:100% }
+
+      .profile{
+        flex-direction:column;
+        align-items:center;
+      }
+      .avatar-wrap{
+        width:100%;
+      }
+      .profile .info{
+        width:100%;
+        padding:0 6px;
+        text-align:left;
+      }
+    }
+
+    /* footer */
+    .footer{
+      text-align:center;
+      color:rgba(226,232,240,0.9);
+      font-size:13px;
+      margin-top:8px;
+      padding-bottom:12px;
+      text-shadow:0 2px 6px rgba(15,23,42,0.8);
+    }
+
+    /* ======= PREVIEW MODAL (images & PDFs) ======= */
+    .preview-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(7,11,21,0.8);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:2000;
+      padding:20px;
+      backdrop-filter:blur(14px);
+    }
+    .preview-panel{
+      width:100%;
+      max-width:1200px;
+      height:100%;
+      max-height:96vh;
+      background:linear-gradient(135deg,#020617,#020617 45%,#0f172a 100%);
+      border-radius:22px;
+      box-shadow:0 26px 70px rgba(0,0,0,0.9);
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+      position:relative;
+      border:1px solid rgba(148,163,184,0.55);
+    }
+    .preview-header{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:12px 16px;
+      border-bottom:1px solid rgba(148,163,184,0.4);
+      background:linear-gradient(90deg,rgba(15,23,42,0.96),rgba(30,64,175,0.96));
+    }
+    .preview-title{
+      font-weight:700;
+      color:#e5f0ff;
+      font-size:14px;
+    }
+    .preview-controls{
+      margin-left:auto;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .preview-btn{
+      background:rgba(15,23,42,0.7);
+      border:1px solid rgba(148,163,184,0.7);
+      padding:6px 10px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:12px;
+      color:#e5f0ff;
+      transition:background .14s ease, transform .14s ease, box-shadow .14s ease, border-color .14s ease;
+    }
+    .preview-btn:hover{
+      background:rgba(56,189,248,0.16);
+      border-color:var(--accent);
+      transform:translateY(-1px);
+      box-shadow:0 10px 26px rgba(15,23,42,0.8);
+    }
+
+    .preview-body{
+      flex:1;
+      overflow:auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px;
+      background:radial-gradient(circle at top,#1e293b 0,transparent 55%), #020617;
+    }
+
+    .preview-img{
+      max-width:100%;
+      max-height:100%;
+      height:auto;
+      display:block;
+      box-shadow:0 20px 55px rgba(0,0,0,0.95);
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,0.65);
+    }
+
+    /* PDF canvas container */
+    .pdf-canvas-wrap{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      width:100%;
+      align-items:center;
+    }
+    .pdf-single-canvas{
+      box-shadow:0 20px 55px rgba(0,0,0,0.95);
+      border-radius:10px;
+      border:1px solid rgba(148,163,184,0.7);
+      overflow:hidden;
+      background:#020617;
+    }
+
+    /* smaller device tweaks */
+    @media (max-width:720px){
+      .preview-panel{border-radius:16px;max-width:100%;max-height:96vh}
+      .preview-header{padding:10px}
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="navbar" role="banner">
+    <div class="brand" aria-hidden="false">
+      <img src="bahan foto.jpg" class="logo-img" alt="Logo">
+      <div>
+        <div class="title">Muhammad Al Gadafi</div>
+        <div class="sub">Teknik Informatika — Universitas Pamulang</div>
+      </div>
+    </div>
+
+    <div class="menu-wrap" aria-haspopup="true">
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuList">
+        ☰ Menu
+      </button>
+
+      <nav id="menuList" class="dropdown" role="menu" aria-label="Primary menu">
+        <a href="#" data-target="home" role="menuitem"><span>Home</span><span class="bullet"></span></a>
+        <a href="#" data-target="profil" role="menuitem"><span>Profil</span><span class="bullet"></span></a>
+        <a href="#" data-target="gallery" role="menuitem"><span>Gallery</span><span class="bullet"></span></a>
+        <a href="#" data-target="latihan" role="menuitem"><span>Latihan</span><span class="bullet"></span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <section class="card content" aria-live="polite">
+      <section id="home" class="active" aria-labelledby="homeTitle">
+        <div style="padding:32px 20px;text-align:center;margin-bottom:10px;">
+          <div class="hero-chip">
+            <span class="hero-chip-dot"></span>
+            <span>Website Pribadi Mahasiswa Informatika</span>
+          </div>
+          <h1 id="homeTitle" style="margin:0;font-size:42px;font-weight:700;letter-spacing:1px;color:#0f1724;">
+            Muhammad Al Gadafi
+          </h1>
+          <p class="muted" style="margin-top:10px;font-size:14px;">
+            Mahasiswa Teknik Informatika Universitas Pamulang — dokumentasi profil, galeri proyek, dan kumpulan tugas dalam satu halaman interaktif.
+          </p>
+        </div>
+      </section>
+
+      <section id="profil" aria-labelledby="profilTitle">
+        <h2 id="profilTitle">Profil</h2>
+        <div class="profile" style="margin-top:12px">
+          <div class="avatar-wrap" aria-hidden="false">
+            <img src="bahan foto.jpg" class="avatar" alt="Foto Profil Muhammad Al Gadafi">
+          </div>
+          <div class="info">
+            <p class="kv"><strong>NIM:</strong> 231011400573</p>
+            <p class="kv"><strong>Nama:</strong> Muhammad Al Gadafi</p>
+            <p class="kv"><strong>Tanggal Lahir:</strong> 11 Agustus 2004</p>
+            <p class="kv"><strong>Universitas:</strong> Universitas Pamulang</p>
+            <p class="kv"><strong>Program Studi:</strong> Teknik Informatika S1</p>
+            <p class="kv"><strong>Prog. Perkuliahan:</strong> Reguler B</p>
+            <p class="kv"><strong>Kelas:</strong> 05TPLM004</p>
+            <p class="kv"><strong>Status Mahasiswa:</strong> Aktif</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" aria-labelledby="galleryTitle">
+        <h2 id="galleryTitle">Gallery</h2>
+        <p class="muted" style="margin-top:6px">Beberapa screenshot atau mockup proyek.</p>
+        <div class="gallery">
+          <img src="tugas/tugas16.png" alt="Project 1">
+          <img src="tugas/tugas8.png" alt="Project 2">
+          <img src="tugas/tugas15.png" alt="Project 3">
+        </div>
+      </section>
+
+      <section id="latihan" aria-labelledby="latihanTitle">
+        <h2 id="latihanTitle">Daftar Tugas</h2>
+        <p class="muted" style="margin-top:8px">
+          Kumpulan Tugas Muhammad Al Gadafi
+        </p>
+
+        <ul class="latihan-list">
+          <li>
+            <a class="hidden-link" href="tugas/tugas2.png" target="_blank">Tugas E-Learning Pertemuan 2</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas3.png" target="_blank">Tugas E-Learning Pertemuan 3</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas4.png" target="_blank">Tugas E-Learning Pertemuan 4</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas5.png" target="_blank">Tugas E-Learning Pertemuan 5</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas6.png" target="_blank">Tugas E-Learning Pertemuan 6</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas7.png" target="_blank">Tugas E-Learning Pertemuan 7</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas8.png" target="_blank">Tugas E-Learning Pertemuan 8</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas9.png" target="_blank">Tugas E-Learning Pertemuan 9</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas10.png" target="_blank">Tugas E-Learning Pertemuan 10</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas11.png" target="_blank">Tugas E-Learning Pertemuan 11</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas12.png" target="_blank">Tugas E-Learning Pertemuan 12</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas13.png" target="_blank">Tugas E-Learning Pertemuan 13</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas14.png" target="_blank">Tugas E-Learning Pertemuan 14</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas15.png" target="_blank">Tugas E-Learning Pertemuan 15</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas16.png" target="_blank">Tugas E-Learning Pertemuan 16</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas17.png" target="_blank">Tugas E-Learning Pertemuan 17</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas18.1.png" target="_blank">Tugas E-Learning Pertemuan 18</a>
+          </li>
+
+          <li>
+            <a class="hidden-link" href="tugas/tugas18.2.png" target="_blank">Tugas E-Learning Pertemuan 18</a>
+          </li>
+        </ul>
+
+      </section>
+    </section>
+
+    <div class="footer">© 2025 Muhammad Al Gadafi — Universitas Pamulang</div>
+  </main>
+
+  <!-- PREVIEW MODAL MARKUP -->
+  <div id="previewOverlay" class="preview-overlay" role="dialog" aria-hidden="true">
+    <div class="preview-panel" role="document">
+      <div class="preview-header">
+        <div class="preview-title" id="previewTitle">Preview</div>
+        <div class="preview-controls">
+          <button id="prevPage" class="preview-btn" title="Sebelumnya" aria-label="Sebelumnya">◀</button>
+          <button id="nextPage" class="preview-btn" title="Berikutnya" aria-label="Berikutnya">▶</button>
+          <button id="showAllPages" class="preview-btn" title="Tampilkan semua halaman" aria-label="Tampilkan semua halaman">Semua</button>
+          <button id="zoomIn" class="preview-btn" title="Perbesar" aria-label="Perbesar">＋</button>
+          <button id="zoomOut" class="preview-btn" title="Perkecil" aria-label="Perkecil">－</button>
+          <button id="closePreview" class="preview-btn" title="Tutup" aria-label="Tutup">✕</button>
+        </div>
+      </div>
+      <div class="preview-body" id="previewBody">
+        <!-- dynamic content: image element OR pdf canvas container -->
+        <img id="previewImage" class="preview-img" alt="Preview" style="display:none">
+        <div id="pdfWrap" class="pdf-canvas-wrap" style="display:none; width:100%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Script utama (navigasi dropdown) ======= -->
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const dropdown = document.getElementById('menuList');
+    const links = dropdown.querySelectorAll('a');
+    const sections = document.querySelectorAll('.content > section');
+
+    function closeDropdown(){
+      dropdown.style.display = 'none';
+      menuBtn.setAttribute('aria-expanded','false');
+    }
+    function openDropdown(){
+      dropdown.style.display = 'flex';
+      dropdown.style.flexDirection = 'column';
+      menuBtn.setAttribute('aria-expanded','true');
+    }
+
+    function setActiveMenu(targetId){
+      links.forEach(l=>{
+        if(l.dataset.target === targetId){
+          l.classList.add('active');
+        }else{
+          l.classList.remove('active');
+        }
+      });
+    }
+
+    menuBtn.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      if(dropdown.style.display === 'flex') closeDropdown(); else openDropdown();
+    });
+
+    links.forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const target = a.dataset.target;
+        sections.forEach(s => s.id === target ? s.classList.add('active') : s.classList.remove('active'));
+        setActiveMenu(target);
+        closeDropdown();
+        const t = document.getElementById(target);
+        if(t) t.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    document.addEventListener('click', (e)=>{
+      if(!dropdown.contains(e.target) && !menuBtn.contains(e.target)) closeDropdown();
+    });
+
+    // set initial active: home
+    sections.forEach(s => s.id === 'home' ? s.classList.add('active') : s.classList.remove('active'));
+    setActiveMenu('home');
+  </script>
+
+  <!-- ======= PDF.js (render halaman 1 sebagai thumbnail) ======= -->
+  <script src="https://unpkg.com/pdfjs-dist@2.15.349/build/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@2.15.349/build/pdf.worker.min.js';
+
+    (function renderLatihanThumbnails(){
+      const latihanList = document.querySelector('#latihan .latihan-list');
+      if(!latihanList) return;
+
+      // ambil semua li yang memiliki link
+      const rawItems = Array.from(latihanList.querySelectorAll('li'));
+      if(rawItems.length === 0) return;
+
+      // preview modal elements
+      const previewOverlay = document.getElementById('previewOverlay');
+      const previewImage = document.getElementById('previewImage');
+      const pdfWrap = document.getElementById('pdfWrap');
+      const previewTitle = document.getElementById('previewTitle');
+      const closePreview = document.getElementById('closePreview');
+      const prevPageBtn = document.getElementById('prevPage');
+      const nextPageBtn = document.getElementById('nextPage');
+      const showAllBtn = document.getElementById('showAllPages');
+      const zoomInBtn = document.getElementById('zoomIn');
+      const zoomOutBtn = document.getElementById('zoomOut');
+
+      // PDF viewer state
+      let currentPdf = null; // pdfjs document
+      let currentPage = 1;
+      let currentScale = 1.0;
+      let isShowingAll = false;
+
+      function openImagePreview(src, title){
+        previewTitle.textContent = title || 'Gambar';
+        previewImage.src = src;
+        previewImage.style.display = 'block';
+        pdfWrap.style.display = 'none';
+        previewOverlay.style.display = 'flex';
+        previewOverlay.setAttribute('aria-hidden','false');
+      }
+
+      function openPdfPreview(href, title){
+        previewTitle.textContent = title || 'PDF Preview';
+        previewImage.style.display = 'none';
+        pdfWrap.style.display = 'flex';
+        pdfWrap.innerHTML = '<div style="width:100%;color:#cbd5f5;padding:14px;text-align:center;">Memuat PDF…</div>';
+        previewOverlay.style.display = 'flex';
+        previewOverlay.setAttribute('aria-hidden','false');
+        currentScale = 1.0; currentPage = 1; isShowingAll = false;
+
+        // load pdf (pdfjs)
+        pdfjsLib.getDocument(href).promise.then(pdfDoc => {
+          currentPdf = pdfDoc;
+          // render first page
+          renderPdfPage(currentPage);
+          // enable/disable nav buttons
+          updateNavButtons();
+        }).catch(err => {
+          pdfWrap.innerHTML = '<div style="width:100%;color:#cbd5f5;padding:14px;text-align:center;">Preview tidak tersedia</div>';
+          console.warn('PDF preview error', href, err);
+        });
+      }
+
+      function updateNavButtons(){
+        if(!currentPdf){
+          prevPageBtn.style.display='none';
+          nextPageBtn.style.display='none';
+          showAllBtn.style.display='none';
+          return;
+        }
+        prevPageBtn.style.display = currentPdf.numPages>1 ? 'inline-flex' : 'none';
+        nextPageBtn.style.display = currentPdf.numPages>1 ? 'inline-flex' : 'none';
+        showAllBtn.style.display = currentPdf.numPages>1 ? 'inline-flex' : 'none';
+      }
+
+      function renderPdfPage(pageNumber){
+        if(!currentPdf) return;
+        isShowingAll = false;
+        pdfWrap.innerHTML = '';
+        currentPdf.getPage(pageNumber).then(page => {
+          const viewport = page.getViewport({ scale: currentScale });
+          const canvas = document.createElement('canvas');
+          canvas.className = 'pdf-single-canvas';
+          canvas.width = Math.floor(viewport.width);
+          canvas.height = Math.floor(viewport.height);
+          const ctx = canvas.getContext('2d');
+          // clear and append
+          const container = document.createElement('div');
+          container.style.width = '100%';
+          container.style.display = 'flex';
+          container.style.justifyContent = 'center';
+          container.appendChild(canvas);
+          pdfWrap.appendChild(container);
+
+          page.render({ canvasContext: ctx, viewport }).promise.then(()=>{
+            // scale canvas to fit container width if necessary
+            fitCanvasToContainer(canvas);
+          });
+        });
+      }
+
+      function fitCanvasToContainer(canvas){
+        // ensure canvas fits visually (CSS will keep quality)
+        const panel = document.querySelector('.preview-panel');
+        if(!panel) return;
+        const maxWidth = Math.min(panel.clientWidth - 40, window.innerWidth - 80);
+        if(canvas.width > maxWidth){
+          canvas.style.width = '100%';
+          canvas.style.height = 'auto';
+        } else {
+          canvas.style.width = canvas.width + 'px';
+          canvas.style.height = canvas.height + 'px';
+        }
+      }
+
+      async function renderAllPages(){
+        if(!currentPdf) return;
+        isShowingAll = true;
+        pdfWrap.innerHTML = '';
+        const total = currentPdf.numPages;
+        for(let p=1;p<=total;p++){
+          try{
+            // small delay to keep UI responsive for large PDFs
+            const page = await currentPdf.getPage(p);
+            const viewport = page.getViewport({ scale: currentScale * 0.9 });
+            const canvas = document.createElement('canvas');
+            canvas.className = 'pdf-single-canvas';
+            canvas.width = Math.floor(viewport.width);
+            canvas.height = Math.floor(viewport.height);
+            const ctx = canvas.getContext('2d');
+            const container = document.createElement('div');
+            container.style.width = '100%';
+            container.style.display = 'flex';
+            container.style.justifyContent = 'center';
+            container.appendChild(canvas);
+            pdfWrap.appendChild(container);
+            await page.render({ canvasContext: ctx, viewport }).promise;
+            fitCanvasToContainer(canvas);
+          }catch(err){ console.warn('Error render page', p, err); }
+        }
+      }
+
+      function closePreviewPanel(){
+        previewOverlay.style.display = 'none';
+        previewOverlay.setAttribute('aria-hidden','true');
+        previewImage.src = '';
+        pdfWrap.innerHTML = '';
+        currentPdf = null; currentPage = 1; currentScale = 1.0; isShowingAll=false;
+      }
+
+      closePreview.addEventListener('click', closePreviewPanel);
+      previewOverlay.addEventListener('click', (e)=>{
+        if(e.target === previewOverlay) closePreviewPanel();
+      });
+
+      prevPageBtn.addEventListener('click', ()=>{
+        if(!currentPdf) return;
+        if(currentPage>1){ currentPage--; renderPdfPage(currentPage); updateNavButtons(); }
+      });
+      nextPageBtn.addEventListener('click', ()=>{
+        if(!currentPdf) return;
+        if(currentPage<currentPdf.numPages){ currentPage++; renderPdfPage(currentPage); updateNavButtons(); }
+      });
+      showAllBtn.addEventListener('click', ()=>{ if(currentPdf) renderAllPages(); });
+      zoomInBtn.addEventListener('click', ()=>{
+        currentScale = Math.min(4, currentScale + 0.25);
+        if(currentPdf){ if(isShowingAll) renderAllPages(); else renderPdfPage(currentPage); }
+      });
+      zoomOutBtn.addEventListener('click', ()=>{
+        currentScale = Math.max(0.25, currentScale - 0.25);
+        if(currentPdf){ if(isShowingAll) renderAllPages(); else renderPdfPage(currentPage); }
+      });
+
+      // transform each li -> latihan-item dengan thumb + meta
+      rawItems.forEach(li => {
+        const a = li.querySelector('a');
+        if(!a) return;
+
+        const href = a.getAttribute('href') || '';
+        const filename = href.split('/').pop() || href;
+        const ext = (filename.split('.').pop() || '').toLowerCase();
+
+        // structure: .latihan-item with thumb + meta (keperluan transform)
+        const item = document.createElement('div');
+        item.className = 'latihan-item';
+
+        const thumb = document.createElement('div');
+        thumb.className = 'thumb';
+        thumb.textContent = 'Memuat...';
+        // make thumb clickable
+        thumb.tabIndex = 0;
+        item.appendChild(thumb);
+
+        const meta = document.createElement('div');
+        meta.className = 'item-meta';
+
+        const titleLink = document.createElement('a');
+        titleLink.className = 'title';
+        titleLink.href = href;
+        titleLink.target = '_blank';
+        titleLink.rel = 'noopener';
+        titleLink.textContent = a.textContent.trim() || filename;
+        meta.appendChild(titleLink);
+
+        const metaRow = document.createElement('div');
+        metaRow.className = 'meta-row';
+
+        const downloadBtn = document.createElement('a');
+        downloadBtn.className = 'btn-small';
+        downloadBtn.href = href;
+        downloadBtn.setAttribute('download', filename);
+        downloadBtn.textContent = 'Download';
+        downloadBtn.title = 'Download file';
+        metaRow.appendChild(downloadBtn);
+
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'muted';
+        nameSpan.style.fontSize = '13px';
+        nameSpan.textContent = filename;
+        metaRow.appendChild(nameSpan);
+
+        meta.appendChild(metaRow);
+        item.appendChild(meta);
+
+        li.replaceWith(item);
+
+        // --- Image types ---
+        if(['jpg','jpeg','png','webp','gif'].includes(ext)) {
+          const img = document.createElement('img');
+          img.src = href;
+          img.alt = titleLink.textContent;
+          img.onload = () => {
+            thumb.textContent = '';
+            img.style.width = '100%';
+            img.style.height = 'auto';
+            img.style.objectFit = 'contain';
+            thumb.appendChild(img);
+
+            // click to open fullscreen image preview
+            thumb.addEventListener('click', ()=> openImagePreview(href, titleLink.textContent));
+            thumb.addEventListener('keypress', (ev)=>{ if(ev.key === 'Enter') openImagePreview(href, titleLink.textContent); });
+          };
+          img.onerror = () => {
+            thumb.textContent = 'Gagal memuat gambar';
+          };
+
+        // --- PDF: render halaman 1 (kualitas tinggi lalu scale via CSS) ---
+        } else if(ext === 'pdf') {
+          const loadingTask = pdfjsLib.getDocument(href);
+          loadingTask.promise.then(pdf => pdf.getPage(1))
+          .then(page => {
+            const targetRenderWidth = 1600; // besar untuk kualitas
+            const viewport = page.getViewport({ scale: 1 });
+            const scale = targetRenderWidth / viewport.width;
+            const scaledViewport = page.getViewport({ scale });
+
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = Math.floor(scaledViewport.width);
+            canvas.height = Math.floor(scaledViewport.height);
+
+            return page.render({ canvasContext: ctx, viewport: scaledViewport }).promise.then(()=>canvas);
+          })
+          .then(canvas => {
+            const img = document.createElement('img');
+            img.src = canvas.toDataURL('image/png');
+            img.alt = titleLink.textContent + ' (preview)';
+            img.style.display = 'block';
+            img.style.width = '100%';
+            img.style.height = 'auto';
+            img.style.objectFit = 'contain';
+            thumb.textContent = '';
+            thumb.appendChild(img);
+
+            // click to open PDF viewer modal (full PDF, all pages navigable)
+            thumb.addEventListener('click', ()=> openPdfPreview(href, titleLink.textContent));
+            thumb.addEventListener('keypress', (ev)=>{ if(ev.key === 'Enter') openPdfPreview(href, titleLink.textContent); });
+          }).catch(err => {
+            thumb.textContent = 'Preview tidak tersedia';
+            thumb.style.fontSize = '12px';
+            thumb.style.color = '#cbd5f5';
+            console.warn('PDF preview error', href, err);
+
+            // still allow opening PDF viewer as fallback
+            thumb.addEventListener('click', ()=> openPdfPreview(href, titleLink.textContent));
+          });
+
+        } else {
+          // tipe file lain: tampilkan label ekstensi
+          thumb.textContent = ext ? ext.toUpperCase() : 'FILE';
+          thumb.style.fontWeight = '700';
+          thumb.style.color = '#e5e7eb';
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>
